@@ -1,0 +1,23 @@
+{
+  "name": "get-hash-code",
+  "version": "0.0.1",
+  "description": "Simple hashing algorithm based on .NET's String.GetHashCode",
+  "main": "lib/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rossipedia/get-hash-code.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "install": "node-gyp rebuild"
+  },
+  "author": {
+    "name": "Bryan Ross",
+    "email": "bryan@rossipedia.com"
+  },
+  "license": "MIT",
+  "gypfile": true,
+  "dependencies": {
+    "bindings": "^1.2.0"
+  }
+}
