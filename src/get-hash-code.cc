@@ -21,6 +21,21 @@ int get_hash_code(const char* str)
   return hash1 + (hash2 * 1566083941);
 }
 
+#if (NODE_MODULE_VERSION > 0x000B)
+// node 0.11+
+
+void GetHashCode(const FunctionCallbackInfo<Value>& args)
+{
+  Isolate* isolate = Isolate::GetCurrent();
+  HandleScope scope(isolate);
+  
+  String::Utf8Value s(args[0]->ToString());
+  args.GetReturnValue().Set(Integer::New(isolate, get_hash_code(*s)));
+}
+
+#else
+// node 0.8 and 0.10
+
 Handle<Value> GetHashCode(const Arguments& args)
 {
   HandleScope scope;
@@ -29,10 +44,11 @@ Handle<Value> GetHashCode(const Arguments& args)
   return scope.Close(Integer::New(get_hash_code(*s)));
 }
 
+#endif
+
 void init(Handle<Object> exports, Handle<Object> module)
 {
-  module->Set(String::NewSymbol("exports"),
-      FunctionTemplate::New(GetHashCode)->GetFunction());
+  NODE_SET_METHOD(module, "exports", GetHashCode);
 }
 
 NODE_MODULE(get_hash_code, init)
