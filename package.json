@@ -1,6 +1,6 @@
 {
   "name": "get-hash-code",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Simple hashing algorithm based on .NET's String.GetHashCode",
   "main": "lib/index.js",
   "repository": {
